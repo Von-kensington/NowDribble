@@ -1,50 +1,68 @@
-# Welcome to your Expo app 👋
+# NowDribble
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+NowDribble is a workout tracking app built with **React Native, Expo, and Firebase**. It allows users to track their **workout progress, scores, and achievements** seamlessly.
 
-## Get started
+## Features
 
-1. Install dependencies
+- 📊 Track **workout progress** in real-time
+- 🏆 Unlock **achievements** based on milestones
+- 🎯 Score-based workout system
+- ☁️ **Firebase integration** for data storage and user authentication
+- 🔄 State management using **Context API**
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- **Frontend:** React Native (with Expo)
+- **State Management:** Context API
+- **Backend:** Firebase (Firestore, Authentication, Storage)
+- **Navigation:** React Navigation
+- **UI Library:** React Native Paper
+- **Package Manager:** pnpm
 
-   ```bash
-    npx expo start
-   ```
+## Installation
 
-In the output, you'll find options to open the app in a
+### Prerequisites
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Install **Node.js** and **pnpm**
+- Install **Expo CLI**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Steps to Run Locally
 
-## Get a fresh project
+```sh
+# Clone the repository
+git clone https://github.com/your-username/nowdribble.git
+cd nowdribble
 
-When you're ready, run:
+# Install dependencies
+pnpm install
 
-```bash
-npm run reset-project
+# Start the development server
+expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Folder Structure
 
-## Learn more
+```
+/src
+  /context          # Context API for state management
+    WorkoutProgressContext.js
+    ScoreContext.js
+    AchievementsContext.js
+  /screens         # App screens
+    HomeScreen.js
+    WorkoutScreen.js
+    AchievementsScreen.js
+  /components      # UI components
+    WorkoutCard.js
+    ScoreBoard.js
+App.js             # Root of the app
+README.md          # Project documentation
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Usage
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Open the app in **Expo Go** (or on a simulator/emulator)
 
-## Join the community
 
-Join our community of developers creating universal apps.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
