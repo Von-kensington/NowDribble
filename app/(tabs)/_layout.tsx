@@ -1,33 +1,39 @@
 import { Tabs } from 'expo-router';
-import { Image, StyleSheet } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={headerOptions}>
-      <Tabs.Screen name="index" options={{ title: 'Home' }} />
-      <Tabs.Screen name="train" options={{ title: 'Train' }} />
-      <Tabs.Screen name="numbers" options={{ title: 'Numbers' }} />
+    <Tabs
+      screenOptions={{
+        tabBarStyle: { backgroundColor: 'white', height: 60 },
+        tabBarLabelStyle: { fontSize: 12 },
+        tabBarActiveTintColor: '#ff66b2',
+        tabBarInactiveTintColor: 'gray',
+        headerShown: false
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color }) => <FontAwesome name="home" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="train-now"
+        options={{
+          title: 'Train Now',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="basketball" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="numbers"
+        options={{
+          title: 'Numbers',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="dots-horizontal" size={24} color={color} />,
+        }}
+      />
     </Tabs>
   );
 }
-const styles = StyleSheet.create({
-  headerContainer: {
-    width: 150, // Explicit width (adjust as needed)
-    height: 100, // Explicit height
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerImage: {
-    width: 100,
-    height: 100
-  },
-});
-const headerOptions = {
-  headerStyle: styles.headerContainer,
-  headerLeft: () => <Ionicons name="bookmark-outline" size={24} color="black" />,
-  headerRight: () => <Ionicons name="person-circle" size={24} color="black" />,
-  headerTitle: () => <Image style={styles.headerImage} source={require('../../assets/images/Vector-2.png')} resizeMode="contain" />
-}
-
 

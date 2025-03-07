@@ -8,6 +8,7 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "backgroundColore": "#FFFFFF",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.vonkensington.NowDribble",
