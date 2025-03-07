@@ -9,7 +9,10 @@ export default function TabLayout() {
         tabBarLabelStyle: { fontSize: 12 },
         tabBarActiveTintColor: '#ff66b2',
         tabBarInactiveTintColor: 'gray',
-        headerShown: false
+        headerShown: false,
+        sceneStyle: {
+          backgroundColor: "white"
+        }
       }}
     >
       <Tabs.Screen
@@ -19,18 +22,19 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FontAwesome name="home" size={24} color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="train-now"
-        options={{
-          title: 'Train Now',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="basketball" size={24} color={color} />,
-        }}
-      />
+
       <Tabs.Screen
         name="numbers"
         options={{
           title: 'Numbers',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="dots-horizontal" size={24} color={color} />,
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="matrix" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="train"
+        options={{
+          title: 'Train Now',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="basketball" size={24} color={color} />,
         }}
       />
     </Tabs>
