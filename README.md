@@ -40,28 +40,10 @@ pnpm install
 expo start
 ```
 
-## Folder Structure
-
-```
-/src
-  /context          # Context API for state management
-    WorkoutProgressContext.js
-    ScoreContext.js
-    AchievementsContext.js
-  /screens         # App screens
-    HomeScreen.js
-    WorkoutScreen.js
-    AchievementsScreen.js
-  /components      # UI components
-    WorkoutCard.js
-    ScoreBoard.js
-App.js             # Root of the app
-README.md          # Project documentation
-```
-
 ## Usage
 
 - Open the app in **Expo Go** (or on a simulator/emulator)
+- Press A or I after `expo start` to open the emulator on ios or android
 
 
 
