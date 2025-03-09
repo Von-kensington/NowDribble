@@ -1,26 +1,14 @@
-import { createTheme, ThemeProvider } from "@rneui/themed";
-import { Redirect } from "expo-router";
-import React from 'react';
+//import liraries
+import { Redirect } from 'expo-router';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const theme = createTheme({
-    lightColors: {
-        primary: 'red',
-    },
-    darkColors: {
-        primary: 'blue',
-    },
-    mode: 'light',
-});
-
-const App = () => {
+// create a component
+const Home = () => {
     return (
-        <ThemeProvider theme={theme}>
-            <Redirect href="./home" />
-        </ThemeProvider>
+        <Redirect href="./home" />
     );
 };
 
-
-
-export default App;
+//make this component available to the app
+export default Home;
