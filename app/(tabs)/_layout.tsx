@@ -5,7 +5,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarStyle: { backgroundColor: 'white', height: 60 },
+        tabBarStyle: { backgroundColor: 'white', height: 80 },
         tabBarLabelStyle: { fontSize: 12 },
         tabBarActiveTintColor: '#ff66b2',
         tabBarInactiveTintColor: 'gray',
@@ -37,6 +37,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <MaterialCommunityIcons name="basketball" size={24} color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="savedWorkouts"
+        options={{ tabBarItemStyle: { display: 'none' } }} />
     </Tabs>
   );
 }
