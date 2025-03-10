@@ -19,22 +19,22 @@ const theme = createTheme({
 
 const App = () => {
   return (
-    <SafeAreaProvider
-      style={{
-        backgroundColor:
-          theme.mode === "dark"
-            ? theme.darkColors?.background
-            : theme.lightColors?.background,
-      }}
-    >
-      <SafeAreaView style={{ flex: 1 }}>
-        <ThemeProvider theme={theme}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          </Stack>
-        </ThemeProvider>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    // <SafeAreaProvider
+    //   style={{
+    //     backgroundColor:
+    //       theme.mode === "dark"
+    //         ? theme.darkColors?.background
+    //         : theme.lightColors?.background,
+    //   }}
+    // >
+    //   <SafeAreaView style={{ flex: 1 }}>
+    <ThemeProvider theme={theme}>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </ThemeProvider>
+    //   </SafeAreaView>
+    // </SafeAreaProvider>
   );
 };
 
