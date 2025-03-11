@@ -29,7 +29,17 @@ const App = () => {
     // >
     //   <SafeAreaView style={{ flex: 1 }}>
     <ThemeProvider theme={theme}>
-      <Stack>
+      <Stack
+        screenOptions={{
+          title: "",
+          contentStyle: {
+            backgroundColor:
+              theme.mode == "dark"
+                ? theme.darkColors?.background
+                : theme.lightColors?.background,
+          },
+        }}
+      >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
