@@ -1,25 +1,43 @@
-//import liraries
-import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Avatar } from "@rneui/base";
+import { Button, Input, makeStyles, Switch } from "@rneui/themed";
+import React, { Component, useState } from "react";
+import { View, Text } from "react-native";
 
-// create a component
+const useStyles = makeStyles((theme) => ({
+  profileAvatar: {},
+  textInput: {},
+  saveButton: { width: "100%", borderRadius: 10 },
+  container: {
+    flex: 1,
+    padding: 10,
+    alignItems: "center",
+  },
+}));
+
 const ProfileSettings = () => {
+  const styles = useStyles();
+  const [useDark, setUseDark] = useState(false);
   return (
     <View style={styles.container}>
-      <Text>ProfileSettings</Text>
+      <View
+        style={{
+          width: "100%",
+          margin: 10,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text>Dark Mode</Text>
+        <Switch value={useDark} onValueChange={setUseDark} />
+      </View>
+      <Button
+        title="Sign Out"
+        containerStyle={styles.saveButton}
+        buttonStyle={{ padding: 15 }}
+      />
     </View>
   );
 };
-
-// define your styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#2c3e50",
-  },
-});
 
 //make this component available to the app
 export default ProfileSettings;
