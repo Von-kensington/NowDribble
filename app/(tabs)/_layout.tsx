@@ -52,7 +52,7 @@ const TabLayout = () => {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <Icon name="home" size={24} color={color} />
+            <Icon name="home" size={24} color={theme.colors.primary} />
           ),
         }}
       />
