@@ -1,34 +1,38 @@
-import { View, StyleSheet } from "react-native";
-import { Link, Stack } from "expo-router";
-import { Text } from "@rneui/themed";
+import { Avatar, Button, Text, Input, makeStyles, Switch } from "@rneui/themed";
+import { Link, useNavigation } from "expo-router";
+import React, { Component, useEffect, useState } from "react";
+import { View } from "react-native";
 
-export default function NotFoundScreen() {
-  return (
-    <>
-      <Stack.Screen options={{ title: "Oops! Not Found" }} />
-      <View style={styles.container}>
-        <Text>
-          Sorry this page does not exist.
-          <Link href="/" style={styles.button}>
-            Home
-          </Link>
-        </Text>
-      </View>
-    </>
-  );
-}
-
-const styles = StyleSheet.create({
+const useStyles = makeStyles((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: "#25292e",
-    justifyContent: "center",
+    padding: 10,
     alignItems: "center",
+    justifyContent: "center",
   },
-
-  button: {
-    fontSize: 20,
+  link: {
+    color: theme.colors.primary,
     textDecorationLine: "underline",
-    color: "#fff",
+    margin: 10,
   },
-});
+}));
+
+const NotFoundScreen = () => {
+  const styles = useStyles();
+  const [useDark, setUseDark] = useState(false);
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  });
+  return (
+    <View style={styles.container}>
+      <Text h2>Coming soon...</Text>
+      <Link href="/" style={styles.link}>
+        Go Home
+      </Link>
+    </View>
+  );
+};
+
+//make this component available to the app
+export default NotFoundScreen;
