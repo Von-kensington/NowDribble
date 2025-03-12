@@ -24,6 +24,8 @@ const TabLayout = () => {
             resizeMode="contain"
           />
         ),
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarInactiveTintColor: theme.colors.grey3,
         headerStyle: {
           height: 120,
           borderWidth: 0,
@@ -51,16 +53,16 @@ const TabLayout = () => {
         name="home/index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => (
-            <Icon name="home" size={24} color={theme.colors.primary} />
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="numbers/index"
         options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="pin" size={24} color={color} />
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="pin" size={size} color={color} />
           ),
           title: "Numbers",
         }}
