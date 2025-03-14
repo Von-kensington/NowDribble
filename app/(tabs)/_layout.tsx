@@ -59,6 +59,20 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
+        name="train/index"
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon
+              name="basketball"
+              type="material-community"
+              size={size}
+              color={color}
+            />
+          ),
+          title: "Train",
+        }}
+      />
+      <Tabs.Screen
         name="numbers/index"
         options={{
           tabBarIcon: ({ color, size }) => (
