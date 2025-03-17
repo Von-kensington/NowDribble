@@ -19,7 +19,7 @@ const TabLayout = () => {
         ),
         headerTitle: () => (
           <Image
-            source={require("../../assets/images/logo.png")}
+            source={require("../../../assets/images/logo.png")}
             style={{ width: 100, height: 90 }}
             resizeMode="contain"
           />

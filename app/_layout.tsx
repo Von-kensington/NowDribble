@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/context/AuthContext";
 import { createTheme, ThemeProvider } from "@rneui/themed";
 import { Redirect, Stack } from "expo-router";
 import React from "react";
@@ -19,32 +20,14 @@ const theme = createTheme({
 
 const App = () => {
   return (
-    // <SafeAreaProvider
-    //   style={{
-    //     backgroundColor:
-    //       theme.mode === "dark"
-    //         ? theme.darkColors?.background
-    //         : theme.lightColors?.background,
-    //   }}
-    // >
-    //   <SafeAreaView style={{ flex: 1 }}>
     <ThemeProvider theme={theme}>
-      <Stack
-        screenOptions={{
-          title: "",
-          contentStyle: {
-            backgroundColor:
-              theme.mode == "dark"
-                ? theme.darkColors?.background
-                : theme.lightColors?.background,
-          },
-        }}
-      >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+      <AuthProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(app)" />
+          <Stack.Screen name="login" />
+        </Stack>
+      </AuthProvider>
     </ThemeProvider>
-    //   </SafeAreaView>
-    // </SafeAreaProvider>
   );
 };
 

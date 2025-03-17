@@ -5,13 +5,17 @@ import {
   User,
 } from "firebase/auth";
 import * as SecureStore from "expo-secure-store";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "@/firebaseConfig";
 type AuthContextType = {
   user: User | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+};
+
+export const useAuth = () => {
+  return useContext(AuthContext);
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -26,9 +30,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(null);
       } else {
         await SecureStore.setItemAsync("user_token", firebaseUser.uid);
-        setUser(user);
+        setUser(firebaseUser);
+        console.log("User", user);
       }
-
       setLoading(false);
     });
     return unsubscribe;
@@ -37,6 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
+      console.log("Logging in...");
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error(error);
