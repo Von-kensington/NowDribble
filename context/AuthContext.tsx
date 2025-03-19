@@ -7,11 +7,13 @@ import {
 import * as SecureStore from "expo-secure-store";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "@/firebaseConfig";
+import { Alert } from "react-native";
 type AuthContextType = {
   user: User | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  error: string;
 };
 
 export const useAuth = () => {
@@ -22,6 +24,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -41,17 +44,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      console.log("Logging in...");
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   };
-  const logout = async () => {
-    await signOut(auth);
-  };
+  const logout = async () => {};
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, error }}>
       {children}
     </AuthContext.Provider>
   );

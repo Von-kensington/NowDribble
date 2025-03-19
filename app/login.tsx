@@ -12,23 +12,13 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const router = useRouter();
-  const { login, loading } = useAuth() || {}; // Use auth context
+  const { login, error, user } = useAuth() || {}; // Use auth context
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async () => {
-    setError(null);
-    try {
-      if (!login) {
-        throw new Error("Login function not found in context");
-      }
-      await login(email, password);
-      router.replace("/"); // Redirect to home on success
-    } catch (err: any) {
-      setError(err.message);
-      Alert.alert("Login Failed", err.message);
-    }
+    await login(email, password);
+    router.replace("/home");
   };
 
   return (
@@ -74,11 +64,7 @@ export default function Login() {
 
       {error && <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>}
 
-      {loading ? (
-        <ActivityIndicator size="large" />
-      ) : (
-        <Button title="Sign In" onPress={handleLogin} />
-      )}
+      <Button title="Sign In" onPress={handleLogin} />
 
       <Text
         style={{ marginTop: 15, color: "blue" }}

@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/AuthContext";
 import { Avatar } from "@rneui/base";
 import { Button, Input, makeStyles, Switch } from "@rneui/themed";
 import React, { Component, useState } from "react";
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const ProfileSettings = () => {
   const styles = useStyles();
   const [useDark, setUseDark] = useState(false);
+  const { logout } = useAuth() || {};
   return (
     <View style={styles.container}>
       <View
@@ -34,6 +36,9 @@ const ProfileSettings = () => {
         title="Sign Out"
         containerStyle={styles.saveButton}
         buttonStyle={{ padding: 15 }}
+        onPress={() => {
+          if (logout) logout();
+        }}
       />
     </View>
   );
