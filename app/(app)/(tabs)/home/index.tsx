@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const videoSource =
-  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+  "https://player.vimeo.com/video/555990347?h=05f5ad3427&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479";
 const Home = () => {
   const styles = useStyles();
   const router = useRouter();
