@@ -34,7 +34,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         await SecureStore.setItemAsync("user_token", firebaseUser.uid);
         setUser(firebaseUser);
-        console.log("User", user);
       }
       setLoading(false);
     });

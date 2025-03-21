@@ -7,9 +7,7 @@ export default function App() {
   const { theme } = useTheme();
   const { loading, user } = useAuth() || {};
   const router = useRouter();
-  console.log({ loading, user });
   useEffect(() => {
-    console.log("User", user);
     if (!user && !loading) {
       router.replace("/login");
     }

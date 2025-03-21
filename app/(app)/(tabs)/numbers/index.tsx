@@ -43,7 +43,7 @@ export default function Numbers() {
       contentContainerStyle={{
         backgroundColor: theme.colors.background,
       }}
-      data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+      data={[1, 2, 3, 4, 5]}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() =>
