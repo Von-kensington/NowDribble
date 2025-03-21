@@ -29,6 +29,7 @@ const uri = "https://i.pravatar.cc/300"; // replace this with your image url thi
 const Profile = () => {
   const styles = useStyles();
   const router = useRouter();
+  const { user } = useAuth();
   const { theme } = useTheme();
   return (
     <View style={styles.container}>

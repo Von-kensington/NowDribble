@@ -1,8 +1,8 @@
-import { AuthProvider } from "@/context/AuthContext";
 import { createTheme, ThemeProvider } from "@rneui/themed";
 import { Redirect, Stack } from "expo-router";
+import AuthProvider, { useAuth } from "@/context/AuthContext";
 import React from "react";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { ActivityIndicator, View } from "react-native";
 
 const theme = createTheme({
   lightColors: {
@@ -23,8 +23,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(app)" />
-          <Stack.Screen name="login" />
+          <Stack.Screen name="(protectedRoutes)" />
         </Stack>
       </AuthProvider>
     </ThemeProvider>

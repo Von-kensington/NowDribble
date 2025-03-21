@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const ProfileSettings = () => {
   const styles = useStyles();
   const [useDark, setUseDark] = useState(false);
-  const { logout } = useAuth() || {};
+  const { logout } = useAuth();
   return (
     <View style={styles.container}>
       <View
@@ -37,7 +37,7 @@ const ProfileSettings = () => {
         containerStyle={styles.saveButton}
         buttonStyle={{ padding: 15 }}
         onPress={() => {
-          if (logout) logout();
+          logout();
         }}
       />
     </View>

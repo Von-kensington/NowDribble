@@ -1,19 +1,22 @@
 import { useAuth } from "@/context/AuthContext";
 import { Text, useTheme } from "@rneui/themed";
-import { Stack, useRouter } from "expo-router";
+import { Redirect, Stack, useRouter } from "expo-router";
 import { useEffect } from "react";
+import { ActivityIndicator, View } from "react-native";
 
 export default function App() {
   const { theme } = useTheme();
-  const { loading, user } = useAuth() || {};
   const router = useRouter();
-  useEffect(() => {
-    if (!user && !loading) {
-      router.replace("/login");
-    }
-  }, [user, loading]);
-  if (loading) {
-    return <Text>Loading...</Text>;
+  const { user, authLoading } = useAuth();
+  if (authLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+  if (!user) {
+    return <Redirect href="/login" />;
   }
   return (
     <Stack
