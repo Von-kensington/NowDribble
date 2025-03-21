@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import {
   Avatar,
@@ -9,6 +9,7 @@ import {
   useTheme,
 } from "@rneui/themed";
 import { useRouter } from "expo-router";
+import { useAuth } from "@/context/AuthContext";
 const useStyles = makeStyles((theme) => ({
   container: {
     flex: 1,
@@ -31,6 +32,13 @@ const Profile = () => {
   const router = useRouter();
   const { user } = useAuth();
   const { theme } = useTheme();
+  const [username, setUsername] = useState("");
+  useEffect(() => {
+    console.log(user.displayName);
+    if (user?.displayName) {
+      setUsername(user.displayName);
+    }
+  }, [user.displayName]);
   return (
     <View style={styles.container}>
       <View style={styles.profileHeader}>
@@ -51,7 +59,7 @@ const Profile = () => {
       <Divider />
       <View style={styles.profileView}>
         <Avatar rounded size={100} source={{ uri: uri }} />
-        <Text style={{ margin: 20 }}>John doe</Text>
+        <Text style={{ margin: 20 }}>{username ? username : user?.email}</Text>
       </View>
     </View>
   );

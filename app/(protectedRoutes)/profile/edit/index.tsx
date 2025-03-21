@@ -1,6 +1,9 @@
+import { auth } from "@/firebaseConfig";
 import { Avatar } from "@rneui/base";
 import { Button, Input, makeStyles } from "@rneui/themed";
-import React, { Component } from "react";
+import { useRouter } from "expo-router";
+import { updateProfile } from "firebase/auth";
+import React, { Component, useState } from "react";
 import { View, Text } from "react-native";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileEdit = () => {
   const styles = useStyles();
+  const [username, setUsername] = useState("");
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <Avatar
@@ -23,11 +28,20 @@ const ProfileEdit = () => {
         size={100}
         source={{ uri: "https://i.pravatar.cc/300" }}
       />
-      <Input placeholder="Display name" style={styles.profileAvatar} />
+      <Input
+        placeholder="Display name"
+        style={styles.profileAvatar}
+        onChangeText={setUsername}
+      />
       <Button
         title="Save Changes"
         containerStyle={styles.saveButton}
         buttonStyle={{ padding: 15 }}
+        onPress={() => {
+          updateProfile(auth.currentUser, {
+            displayName: username,
+          }).then(() => router.replace("/profile"));
+        }}
       />
     </View>
   );
