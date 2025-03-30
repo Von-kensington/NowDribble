@@ -38,9 +38,11 @@ const ProfileEdit = () => {
         containerStyle={styles.saveButton}
         buttonStyle={{ padding: 15 }}
         onPress={() => {
-          updateProfile(auth.currentUser, {
-            displayName: username,
-          }).then(() => router.replace("/profile"));
+          if (auth.currentUser !== null) {
+            updateProfile(auth.currentUser, {
+              displayName: username,
+            }).then(() => router.replace("/profile"));
+          }
         }}
       />
     </View>
