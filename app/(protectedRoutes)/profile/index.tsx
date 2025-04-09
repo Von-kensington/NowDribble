@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
 }));
-const uri = "https://i.pravatar.cc/300"; // replace this with your image url this is just a placeholder
 const Profile = () => {
   const styles = useStyles();
   const router = useRouter();
@@ -34,7 +33,7 @@ const Profile = () => {
   const { theme } = useTheme();
   const [username, setUsername] = useState("");
   useEffect(() => {
-    console.log(user.displayName);
+    console.log(user.photoURL);
     if (user?.displayName) {
       setUsername(user.displayName);
     }
@@ -58,7 +57,11 @@ const Profile = () => {
       </View>
       <Divider />
       <View style={styles.profileView}>
-        <Avatar rounded size={100} source={{ uri: uri }} />
+        <Avatar
+          rounded
+          size={100}
+          source={{ uri: user?.photoURL ? user.photoURL : "" }}
+        />
         <Text style={{ margin: 20 }}>{username ? username : user?.email}</Text>
       </View>
     </View>
