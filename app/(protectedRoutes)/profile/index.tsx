@@ -31,13 +31,7 @@ const Profile = () => {
   const router = useRouter();
   const { user } = useAuth();
   const { theme } = useTheme();
-  const [username, setUsername] = useState("");
-  useEffect(() => {
-    console.log(user.photoURL);
-    if (user?.displayName) {
-      setUsername(user.displayName);
-    }
-  }, [user.displayName]);
+
   return (
     <View style={styles.container}>
       <View style={styles.profileHeader}>
@@ -62,7 +56,9 @@ const Profile = () => {
           size={100}
           source={{ uri: user?.photoURL ? user.photoURL : "" }}
         />
-        <Text style={{ margin: 20 }}>{username ? username : user?.email}</Text>
+        <Text style={{ margin: 20 }}>
+          {user?.displayName ? user.displayName : user?.email}
+        </Text>
       </View>
     </View>
   );

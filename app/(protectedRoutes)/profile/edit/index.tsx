@@ -25,8 +25,9 @@ const ProfileEdit = () => {
   const styles = useStyles();
   const [username, setUsername] = useState("");
   const router = useRouter();
-  const [photoURL, setPhotoURL] = useState("");
   const { user } = useAuth();
+
+  const [photoURL, setPhotoURL] = useState(user.photoURL);
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -54,8 +55,8 @@ const ProfileEdit = () => {
 
             // 4. Get URL and save to Firestore
             const downloadURL = await getDownloadURL(storageRef);
-
-            console.log("✅ Uploaded and saved photoURL!");
+            setPhotoURL(downloadURL);
+            console.log("✅ Uploaded and saved photoURL!", photoURL);
           } catch (error) {
             console.error("Error picking image: ", error);
           }
@@ -76,7 +77,8 @@ const ProfileEdit = () => {
           if (auth.currentUser !== null) {
             updateProfile(auth.currentUser, {
               displayName: username,
-            }).then(() => router.replace("/profile"));
+              photoURL: photoURL,
+            }).then(() => router.navigate("/profile"));
           }
         }}
       />
