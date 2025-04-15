@@ -25,12 +25,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const captions = [
-  "Focus on a firm dribble on the outside of each foot.",
-  "Keep your hand on top of ball to make your dribble strong and quick. Don't go past your center of mass.",
-  "Focus on making your dribble quick and slightly rocking your body towards the direction of the ball, right to left.",
-  "Same as 3, focus on making your dribble quick and slightly rocking your body towards the direction of the ball, right to left (body wrap).",
-  "To speed up ball control, focus on crossing the ball quick and snappy between the center of your wide base without your arms too far outside your waist.",
+const numbers = [
+  {
+    id: 1,
+    caption: "Focus on a firm dribble on the outside of each foot.",
+    url: "https://player.vimeo.com/video/736674821",
+  },
+  {
+    id: 2,
+    caption:
+      "Keep your hand on top of ball to make your dribble strong and quick. Don't go past your center of mass.",
+    url: "https://player.vimeo.com/video/736674812",
+  },
+  {
+    id: 3,
+    caption:
+      "Focus on making your dribble quick and slightly rocking your body towards the direction of the ball, right to left.",
+    url: "https://player.vimeo.com/video/736674798",
+  },
+  {
+    id: 4,
+    caption:
+      "Same as 3, focus on making your dribble quick and slightly rocking your body towards the direction of the ball, right to left (body wrap).",
+    url: "https://player.vimeo.com/video/736674775",
+  },
+  {
+    id: 5,
+    caption:
+      "To speed up ball control, focus on crossing the ball quick and snappy between the center of your wide base without your arms too far outside your waist.",
+    url: "https://player.vimeo.com/video/736674752",
+  },
 ];
 
 export default function Numbers() {
@@ -43,29 +67,29 @@ export default function Numbers() {
       contentContainerStyle={{
         backgroundColor: theme.colors.background,
       }}
-      data={[1, 2, 3, 4, 5]}
+      data={numbers}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() =>
             router.push({
               pathname: "/VideoPlayer",
               params: {
-                url: `https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`,
+                url: item.url,
               },
             })
           }
         >
           <Card containerStyle={styles.cardContainer}>
             <Text h3 style={styles.numberText}>
-              #{item}
+              #{item.id}
             </Text>
             <Text style={styles.captionText}>
-              {captions[item - 1] || "Nothing here yet!"}
+              {item.caption || "Nothing here yet!"}
             </Text>
           </Card>
         </TouchableOpacity>
       )}
-      keyExtractor={(item) => item.toString()}
+      keyExtractor={(item) => item.id.toString()}
     />
   );
 }

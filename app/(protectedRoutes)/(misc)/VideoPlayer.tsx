@@ -6,5 +6,11 @@ export default function VideoPlayer() {
   const player = useVideoPlayer(url || "", (player) => {
     player.play();
   });
-  return <WebView source={{ uri: url ? url : "" }} style={{ flex: 1 }} />;
+  return (
+    <WebView
+      originWhitelist={["*"]}
+      source={{ uri: url ? url : "" }}
+      style={{ flex: 1 }}
+    />
+  );
 }
