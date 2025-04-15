@@ -3,10 +3,9 @@ import { Avatar } from "@rneui/base";
 import { Button, Input, makeStyles } from "@rneui/themed";
 import { useRouter } from "expo-router";
 import { updateProfile } from "firebase/auth";
-import React, { Component, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import * as DocumentPicker from "expo-document-picker";
-import * as FileSystem from "expo-file-system";
+import React, { useState } from "react";
+import { View, TouchableOpacity } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useAuth } from "@/context/AuthContext";
 
@@ -33,14 +32,19 @@ const ProfileEdit = () => {
       <TouchableOpacity
         onPress={async () => {
           try {
-            const result = await DocumentPicker.getDocumentAsync({
-              type: ["image/*"],
-              copyToCacheDirectory: true,
+            let result = await ImagePicker.launchImageLibraryAsync({
+              mediaTypes: ["images"],
+              allowsEditing: true,
+              aspect: [4, 3],
+              quality: 1,
             });
-            if (result.canceled) return;
+
+            if (result.canceled) {
+              return;
+            }
 
             const uri = result.assets[0].uri;
-            const name = result.assets[0].name;
+            const name = result.assets[0].fileName;
 
             // 2. Convert to Blob
             const response = await fetch(uri);

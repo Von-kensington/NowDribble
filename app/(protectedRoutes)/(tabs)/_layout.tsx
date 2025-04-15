@@ -1,11 +1,24 @@
 import { Icon, useTheme } from "@rneui/themed";
-import { Tabs, useRouter } from "expo-router";
+import { Tabs, useFocusEffect, useRouter } from "expo-router";
 import { Image } from "@rneui/themed";
 import { TouchableOpacity } from "react-native";
+import { useAuth } from "@/context/AuthContext";
+import { Avatar } from "@rneui/base";
+import { useCallback, useState } from "react";
 
 const TabLayout = () => {
   const router = useRouter();
   const { theme } = useTheme();
+  const [profileURL, setPhotoURL] = useState("");
+  const { user } = useAuth();
+  useFocusEffect(
+    useCallback(() => {
+      console.log("user", user.displayName);
+      if (user.photoURL) {
+        setPhotoURL(user.photoURL);
+      }
+    }, [])
+  );
   return (
     <Tabs
       screenOptions={{
@@ -39,12 +52,16 @@ const TabLayout = () => {
             onPress={() => router.push({ pathname: "/profile" })}
             style={{ marginRight: 10 }}
           >
-            <Icon
-              name="account-circle-outline"
-              type="material-community"
-              size={45}
-              color="#000"
-            />
+            {profileURL ? (
+              <Avatar source={{ uri: profileURL }} rounded size={45} />
+            ) : (
+              <Icon
+                name="account-circle-outline"
+                type="material-community"
+                size={45}
+                color="#000"
+              />
+            )}
           </TouchableOpacity>
         ),
       }}
